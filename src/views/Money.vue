@@ -1,7 +1,8 @@
 <template>
   <div>
-    首页
-    <Nav />
+    <Layout>
+      <p>money首页</p>
+    </Layout>
   </div>
 </template>
 
