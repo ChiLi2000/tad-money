@@ -7,16 +7,15 @@
   </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 export default {
   name: "Layout",
 };
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .nav-wrapper {
   display: flex;
-  border: 1px solid black;
   flex-direction: column;
   height: 100vh;
 }
