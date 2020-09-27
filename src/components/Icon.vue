@@ -23,7 +23,9 @@ export default {
 
 <style lang="scss" scoped>
 .icon {
-  width: 32px;
-  height: 32px;
+   width: 32px;
+      height: 32px;
+  fill: currentColor;
+  overflow: hidden;
 }
 </style>
