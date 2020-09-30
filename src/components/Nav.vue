@@ -37,6 +37,11 @@ nav {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
+    svg {
+      width: 32px;
+      height: 32px;
+    }
   }
   > .item.selected {
     color: red;
