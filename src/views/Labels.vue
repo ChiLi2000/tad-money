@@ -10,8 +10,8 @@
         <Icon name="right" />
       </li>
     </ol>
-    <div class="createTag-wrapper">
-      <button class="createTag" @click="createTag">新建标签</button>
+    <div class="button-wrapper">
+      <Button @click="createTag"> 新建标签 </Button>
     </div>
   </Layout>
 </template>
@@ -19,7 +19,10 @@
 <script lang="ts">
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
-
+import Button from "@/components/Button.vue";
+@Component({
+  components: { Button },
+})
 export default class Labels extends Vue {}
 </script>
 
@@ -42,18 +45,9 @@ export default class Labels extends Vue {}
     }
   }
 }
-
-.createTag {
-  background: #767676;
-  color: white;
-  border-radius: 4px;
-  border: none;
-  height: 40px;
-  padding: 0 16px;
-  &-wrapper {
-    text-align: center;
-    padding: 16px;
-    margin-top: 44-16px;
-  }
+.button-wrapper {
+  text-align: center;
+  padding: 16px;
+  margin-top: 28px;
 }
 </style>
