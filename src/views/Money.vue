@@ -9,8 +9,7 @@
         :value.sync="record.notes"
       />
     </div>
-    <Notes :value.sync="record.notes" />
-    <Tags :data-source.sync="tags" :selectedTags.sync="record.tags" />
+    <Tags :selectedTags.sync="record.tags" />
   </Layout>
 </template>
 
@@ -22,20 +21,23 @@ import Types from "@/components/Money/Types.vue";
 import NumberPad from "@/components/Money/NumberPad.vue";
 import { Component, Watch } from "vue-property-decorator";
 import recordListModel from "@/models/recordListModel";
+import tagListModel from "@/models/tagListModel";
 
 const recordList = recordListModel.fetch();
+const tagList = tagListModel.fetch();
 
 @Component({
   components: { Tags, FormItem, Types, NumberPad },
 })
 export default class Money extends Vue {
-  tags = ["衣", "食", "住", "行"];
+  tags = tagList;
   recordList: RecordItem[] = recordList;
   record: RecordItem = {
     tags: [],
     notes: "",
     type: "-",
     amount: 0,
+    createdAt: new Date(),
   };
 
   saveRecord() {
