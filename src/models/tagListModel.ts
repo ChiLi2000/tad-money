@@ -1,31 +1,14 @@
 import createId from "@/lib/createId";
 
-const localStorageTag = "tagList";
-
-type Tag = {
-  id: string;
-  name: string;
-};
-
-type TagListModel = {
-  data: Tag[];
-  fetch: () => Tag[];
-  create: (name: string) => "success" | "duplicated"; // 联合类型
-  update: (id: string, name: string) => "success" | "duplicated" | "not found";
-  remove: (id: string) => boolean;
-  save: () => void;
-};
-
 const tagListModel: TagListModel = {
   data: [],
+
   fetch() {
-    this.data = JSON.parse(
-      window.localStorage.getItem(localStorageTag) || "[]"
-    );
+    this.data = JSON.parse(window.localStorage.getItem("tagList") || "[]");
     return this.data;
   },
 
-  create(name: string) {
+  create(name) {
     const names = this.data.map((item) => item.name);
     if (names.indexOf(name) >= 0) {
       return "duplicated";
@@ -52,7 +35,7 @@ const tagListModel: TagListModel = {
       return "not found";
     }
   },
-  remove(id: string) {
+  remove(id) {
     let index = -1;
     for (let i = 0; i < this.data.length; i++) {
       if (this.data[i].id === id) {
@@ -66,7 +49,7 @@ const tagListModel: TagListModel = {
   },
 
   save() {
-    window.localStorage.setItem(localStorageTag, JSON.stringify(this.data));
+    window.localStorage.setItem("tagList", JSON.stringify(this.data));
   },
 };
 
