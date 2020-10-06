@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { Component, Prop} from "vue-property-decorator";
+import { Component, Prop } from "vue-property-decorator";
 
 @Component
 export default class FormItem extends Vue {
@@ -29,7 +29,7 @@ export default class FormItem extends Vue {
 }
 </script>
 
-<style lang="scss" >
+<style lang="scss" scoped>
 .formItem {
   font-size: 14px;
   padding-left: 16px;

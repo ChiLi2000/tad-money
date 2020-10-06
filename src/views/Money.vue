@@ -9,7 +9,7 @@
         :value.sync="record.notes"
       />
     </div>
-    <Tags :selectedTags.sync="record.tags" />
+    <Tags />
   </Layout>
 </template>
 
@@ -19,15 +19,15 @@ import Tags from "@/components/Money/Tags.vue";
 import FormItem from "@/components/Money/FormItem.vue";
 import Types from "@/components/Money/Types.vue";
 import NumberPad from "@/components/Money/NumberPad.vue";
-import { Component} from "vue-property-decorator";
-
-import store from "@/store/index2";
+import { Component } from "vue-property-decorator";
 
 @Component({
   components: { Tags, FormItem, Types, NumberPad },
 })
 export default class Money extends Vue {
-  recordList = store.recordList;
+  get recordList() {
+    return this.$store.state.recordList;
+  }
   record: RecordItem = {
     tags: [],
     notes: "",
@@ -36,8 +36,12 @@ export default class Money extends Vue {
     createdAt: new Date(),
   };
 
+  created() {
+    this.$store.commit("fetchRecords");
+  }
+
   saveRecord() {
-    store.createRecord(this.record);
+    this.$store.commit("createRecord", this.record);
   }
 }
 </script>
