@@ -25,7 +25,7 @@ import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
 @Component
 export default class NumberPad extends Vue {
-  @Prop(Number) readonly value!: number;
+  @Prop() readonly value!: number;
   output = this.value.toString();
 
   // event.target.textContent;
