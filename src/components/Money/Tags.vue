@@ -40,12 +40,12 @@ export default class Tags extends mixins(TagHelper) {
     } else {
       this.selectedTags.push(tag);
     }
-    this.$emit("update:selectedTags", this.selectedTags);
+    this.$emit("update:value", this.selectedTags);
   }
 }
 </script>
 
-<style lang="scss" scoped >
+<style lang="scss" scoped>
 .tags {
   background: white;
   font-size: 14px;

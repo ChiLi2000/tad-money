@@ -9,7 +9,7 @@
         :value.sync="record.notes"
       />
     </div>
-    <Tags />
+    <Tags :value.sync="record.tags" />
   </Layout>
 </template>
 
@@ -27,6 +27,7 @@ import recordTypeList from "@/constants/recordTypeList";
 })
 export default class Money extends Vue {
   recordTypeList = recordTypeList;
+
   get recordList() {
     return this.$store.state.recordList;
   }
@@ -35,7 +36,7 @@ export default class Money extends Vue {
     notes: "",
     type: "-",
     amount: 0,
-    createdAt: new Date(),
+    createdAt: new Date().toISOString(),
   };
 
   created() {
@@ -48,12 +49,12 @@ export default class Money extends Vue {
 }
 </script>
 
-<style lang="scss" >
-.layout-content {
+<style lang="scss" scoped>
+::v-deep .layout-content {
   display: flex;
   flex-direction: column-reverse;
 }
-.notes {
+::v-deep .notes {
   padding: 12px 0;
   background: #f5f5f5;
 }

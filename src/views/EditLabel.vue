@@ -1,9 +1,9 @@
 <template>
-  <Layout class="backc">
-    <div class="navBar">
-      <Icon class="leftIcon" name="left" @click="goBack" />
+  <Layout>
+    <div class="navBar" @click="goBack">
+      <Icon class="leftIcon" name="left" />
       <span class="title">编辑标签</span>
-      <span class="rightIcon"></span>
+      <span></span>
     </div>
     <div class="form-wrapper">
       <FormItem
@@ -63,26 +63,19 @@ export default class EditLabel extends Vue {
 }
 </script>
 
-<style lang='scss' >
-.backc {
-  background: #f5f5f5;
-}
-.navBar {
+<style lang="scss" scoped>
+::v-deep .navBar {
   background: white;
   padding: 12px 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  .leftIcon {
-    width: 24px;
-    height: 24px;
-  }
-  .rightIcon {
+  svg {
     width: 24px;
     height: 24px;
   }
 }
+
 .form-wrapper {
   background: white;
   margin-top: 8px;

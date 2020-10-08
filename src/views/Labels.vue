@@ -39,7 +39,7 @@ export default class Labels extends mixins(TagHelper) {
 </script>
 
 <style lang="scss" scoped>
-.tags {
+::v-deep .tags {
   background: white;
   padding-left: 16px;
   .tag {
