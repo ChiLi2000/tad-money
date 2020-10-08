@@ -5,21 +5,24 @@
       :data-source="recordTypeList"
       :value.sync="type"
     />
-    <ol>
+    <ol v-if="groupedList.length > 0">
       <li v-for="(group, index) in groupedList" :key="index">
         <h3 class="title">
           {{ beautify(group.title) }}<span>￥{{ group.total }}</span>
         </h3>
         <ol>
           <li class="record" v-for="item in group.items" :key="item.id">
-            <!-- <span>{{tagString(item.tags)}}</span> -->
-            <span v-for="tag in item.tags" :key="tag.id">{{ tag.name }} </span>
+            <span>{{ tagString(item.tags) }}</span>
+            <!-- <span v-for="tag in item.tags" :key="tag.id">{{ tag.name }} </span> -->
             <span class="notes">{{ item.notes }}</span>
             <span>￥{{ item.amount }}</span>
           </li>
         </ol>
       </li>
     </ol>
+    <div v-else class="noResult">
+      无
+    </div>
   </Layout>
 </template>
 
@@ -49,15 +52,15 @@ export default class Statistics extends Vue {
 
   get groupedList() {
     const { recordList } = this;
-    if (recordList.length === 0) {
-      return [];
-    }
 
     const newList = clone(recordList)
       .filter((r) => r.type === this.type)
       .sort(
         (a, b) => dayjs(b.createdAt).valueOf() - dayjs(a.createdAt).valueOf()
       );
+    if (newList.length === 0) {
+      return [];
+    }
     type Result = { title: string; total?: number; items: RecordItem[] }[];
     const result: Result = [
       {
@@ -90,7 +93,7 @@ export default class Statistics extends Vue {
   // 格式化标签与时间
 
   tagString(tags: Tag[]) {
-    return tags.length === 0 ? "无" : tags.join(",");
+    return tags.length === 0 ? "无" : tags.map((t) => t.name).join("，");
   }
 
   beautify(string: string) {
@@ -112,6 +115,10 @@ export default class Statistics extends Vue {
 </script>
 
 <style lang="scss" scoped>
+.noResult {
+  padding: 16px;
+  text-align: center;
+}
 ::v-deep {
   .type-tabs-item {
     background: white;
